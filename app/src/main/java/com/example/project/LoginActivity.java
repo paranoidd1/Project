@@ -31,14 +31,22 @@ public class LoginActivity extends AppCompatActivity {
         Button btnLogin = findViewById(R.id.btnLogin);
         TextView tvGoRegister = findViewById(R.id.tvGoRegister);
 
+        // Data from the register screen (null if we came from Splash)
+        String regUser = getIntent().getStringExtra("username");
+        String regPass = getIntent().getStringExtra("password");
+
         btnLogin.setOnClickListener(v -> {
             String user = etUser.getText().toString().trim();
             String pass = etPass.getText().toString().trim();
 
             if (user.isEmpty() || pass.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            } else if (regUser == null || regPass == null) {
+                Toast.makeText(this, "No account yet - please sign up first", Toast.LENGTH_SHORT).show();
+            } else if (user.equals(regUser) && pass.equals(regPass)) {
+                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Login attempt", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Wrong username or password", Toast.LENGTH_SHORT).show();
             }
         });
 
