@@ -1,5 +1,5 @@
 # Financy
-   Author: Ваше имя
+   Author: Markovich Vsevolod
 
    - Splash: animated logo, then automatic transition to login
    - Login: username and password check
