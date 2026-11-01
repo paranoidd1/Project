@@ -1,6 +1,11 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -19,6 +24,28 @@ public class LoginActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        EditText etUser = findViewById(R.id.etUser);
+        EditText etPass = findViewById(R.id.etPass);
+        Button btnLogin = findViewById(R.id.btnLogin);
+        TextView tvGoRegister = findViewById(R.id.tvGoRegister);
+
+        btnLogin.setOnClickListener(v -> {
+            String user = etUser.getText().toString().trim();
+            String pass = etPass.getText().toString().trim();
+
+            if (user.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Login attempt", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        tvGoRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }
